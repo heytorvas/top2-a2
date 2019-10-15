@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/index.xhtml">
+	<ui:define name="main">
+		<h:form id="form1">
+			<p:panel header="Search">
+				<p:panelGrid columns="3">
+		    ID:
+		    <p:inputText value="#{subjectBean.idSearch}" />
+					<p:commandButton value="Search"
+						action="#{subjectBean.searchId}" update="form1" />
+
+				</p:panelGrid>
+			</p:panel>
+			<br />
+			<p:panel header="Infos Subjects">
+				<p:panelGrid columns="2">
+	   
+		    ID:
+		    <p:outputLabel value="#{subjectBean.subject.id}" />
+	
+	        NAME:
+		    <p:inputText value="#{subjectBean.subject.nameSubject}" />
+		    
+		    SUMMARY:
+		    <p:inputText value="#{subjectBean.subject.menuSubject}" />
+		    
+		    WORKLOAD:
+		    <p:inputText value="#{subjectBean.subject.workloadSubject}" />
+
+				</p:panelGrid>
+
+				<br />
+				<p:commandButton value="Create" action="#{subjectBean.insert}"
+					update="form1,data1" />
+
+				<p:commandButton value="Update" action="#{subjectBean.update}"
+					update="form1,data1" />
+
+				<p:commandButton value="Delete" action="#{subjectBean.delete}"
+					update="form1,data1" />
+
+				<p:commandButton value="Clear"
+					action="#{subjectBean.clean}" update="form1" />
+
+				<p:messages />
+			</p:panel>
+		</h:form>
+
+		<br />
+
+		<p:panel id="panel1" header="List All Subjects">
+
+			<p:dataTable id="data1" var="sub"
+				value="#{subjectBean.subjects}">
+				<p:column headerText="ID">
+					<h:outputText value="#{sub.id}" />
+				</p:column>
+
+				<p:column headerText="NAME">
+					<h:outputText value="#{sub.nameSubject}" />
+				</p:column>
+				
+				<p:column headerText="SUMMARY">
+					<h:outputText value="#{sub.menuSubject}" />
+				</p:column>
+				
+				<p:column headerText="WORKLOAD">
+					<h:outputText value="#{sub.workloadSubject}" />
+				</p:column>
+			</p:dataTable>
+
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>
