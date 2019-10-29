@@ -34,8 +34,8 @@ public class CourseBean {
 
 	@PostConstruct
 	public void init() {
-		courses = courseEJB.findAll();
 		setSyllabus(syllabusEJB.findAll());
+		courses = courseEJB.findAll();
 	}
 	
 	public String insert() {

@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 public class Course implements Serializable {
 
-	   
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
