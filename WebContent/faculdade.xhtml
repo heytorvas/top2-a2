@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:form>
+	<h:commandButton action="crud-matriz-curricular?faces-redirect=true"
+		value="Matriz curricular" />
+	<h:commandButton action="crud-curso?faces-redirect=true"
+		value="Faculdade" />
+	<h:commandButton action="crud-faculdade?faces-redirect=true"
+		value="Curso" />
+</h:form>
+
+<h:form id="form1">
+	<p:panel header="Pesquisar faculdade por ID:">
+		<p:panelGrid columns="3">
+		    ID:
+		    <p:inputText value="#{faculdadeBean.idPesquisa}" />
+			<p:commandButton value="Pesquisar"
+				action="#{faculdadeBean.pesquisar}" update="form1" />
+
+		</p:panelGrid>
+	</p:panel>
+	<br />
+	<p:panel header="Cadastrar faculdade:">
+		<p:panelGrid columns="2">
+	   
+		    ID da faculdade:
+		    <p:outputLabel value="#{faculdadeBean.faculdade.idFaculdade}" />
+	
+	        Nome da faculdade:
+		    <p:inputText value="#{faculdadeBean.faculdade.nomeFaculdade}" />
+
+		</p:panelGrid>
+
+		<br />
+		<p:commandButton value="Incluir" action="#{faculdadeBean.insert}"
+			update="form1,data1" />
+
+		<p:commandButton value="Alterar" action="#{faculdadeBean.update}"
+			update="form1,data1" />
+
+		<p:commandButton value="Deletar" action="#{faculdadeBean.delete}"
+			update="form1,data1" />
+
+		<p:commandButton value="Limpar" action="#{faculdadeBean.limpar}"
+			update="form1" />
+
+		<p:messages />
+	</p:panel>
+</h:form>
+
+<br></br>
+
+<p:dataTable id="data1" var="obj" value="#{faculdadeBean.faculdades}">
+	<f:facet name="header">
+            Lista de faculdades cadastradas:
+            </f:facet>
+	<p:column headerText="ID da faculdade">
+		<h:outputText value="#{obj.idFaculdade}" />
+	</p:column>
+
+	<p:column headerText="Nome da faculdade">
+		<h:outputText value="#{obj.nomeFaculdade}" />
+	</p:column>
+</p:dataTable>
+
+</html>

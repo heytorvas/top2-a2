@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:form>
+	<h:commandButton action="crud-matriz-curricular?faces-redirect=true"
+		value="Matriz curricular" />
+	<h:commandButton action="crud-curso?faces-redirect=true"
+		value="Faculdade" />
+	<h:commandButton action="crud-faculdade?faces-redirect=true"
+		value="Curso" />
+</h:form>
+
+
+<h:form id="form1">
+	<p:panel header="Pesquisar por ID da matriz curricular:">
+		<p:panelGrid columns="3">
+		    ID:
+		    <p:inputText value="#{matrizCurricularBean.idPesquisa}" />
+			<p:commandButton value="Pesquisar"
+				action="#{matrizCurricularBean.pesquisar}" update="form1" />
+
+		</p:panelGrid>
+	</p:panel>
+	<br />
+	<p:panel header="Cadastrar uma matriz curricular">
+		<p:panelGrid columns="2">
+	   
+		    ID da matriz curricular:
+		    <p:outputLabel
+				value="#{matrizCurricularBean.matrizCurricular.idMatrizCurricular}" />
+	
+	        Disciplina nome:
+		    <p:inputText
+				value="#{matrizCurricularBean.matrizCurricular.disciplinaNome}" />
+		    
+		    Periodo:
+		    <p:inputText
+				value="#{matrizCurricularBean.matrizCurricular.disciplinaPeriodo}" />
+
+		</p:panelGrid>
+
+		<br />
+		<p:commandButton value="Incluir"
+			action="#{matrizCurricularBean.insert}" update="form1,data1" />
+
+		<p:commandButton value="Alterar"
+			action="#{matrizCurricularBean.update}" update="form1,data1" />
+
+		<p:commandButton value="Deletar"
+			action="#{matrizCurricularBean.delete}" update="form1,data1" />
+
+		<p:commandButton value="Limpar"
+			action="#{matrizCurricularBean.limpar}" update="form1" />
+
+		<p:messages />
+	</p:panel>
+</h:form>
+
+<br></br>
+
+<p:dataTable id="data1" var="tp"
+	value="#{matrizCurricularBean.matrizesCurriculares}">
+	<f:facet name="header">
+            TIPOS DE PAGAMENTO
+            </f:facet>
+
+	<p:column headerText="ID">
+		<h:outputText value="#{tp.idMatrizCurricular}" />
+	</p:column>
+
+	<p:column headerText="Nome">
+		<h:outputText value="#{tp.disciplinaNome}" />
+	</p:column>
+
+	<p:column headerText="Perido">
+		<h:outputText value="#{tp.disciplinaPeriodo}" />
+	</p:column>
+</p:dataTable>
+
+</html>
