@@ -1,42 +1,39 @@
 package br.unitins.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.lang.Integer;
-import java.lang.String;
-import javax.persistence.*;
 
 @Entity
 public class Instituicao implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	@Id
-	@GeneratedValue
-	private Integer idInstituicao;
+    @Column
+    private String nome;
 
-	@Column
-	private String nomeInstituicao;
+    public Instituicao() {
+        super();
+    }
 
-	private static final long serialVersionUID = 1L;
 
-	public Instituicao() {
-		super();
-	}
+    public Integer getIdInstituicao() {
+        return id;
+    }
 
-	public Integer getIdInstituicao() {
-		return idInstituicao;
-	}
+    public void setIdInstituicao(Integer id) {
+        this.id = id;
+    }
 
-	public void setIdInstituicao(Integer idInstituicao) {
-		this.idInstituicao = idInstituicao;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public String getNomeInstituicao() {
-		return nomeInstituicao;
-	}
-
-	public void setNomeInstituicao(String nomeInstituicao) {
-		this.nomeInstituicao = nomeInstituicao;
-	}
-
-	
-
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

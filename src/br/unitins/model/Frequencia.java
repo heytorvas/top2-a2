@@ -1,60 +1,72 @@
 package br.unitins.model;
 
-import br.unitins.model.Matricula;
-import java.io.Serializable;
-import java.lang.Integer;
-import java.sql.Date;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 public class Frequencia implements Serializable {
 
-	   
-	@Id
-	private Integer idFrequencia;
-	private Date data;
-	private Date horaInicio;
-	private Date horaFim;
-	private Matricula matricula;
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public Frequencia() {
-		super();
-	}   
-	public Integer getIdFrequencia() {
-		return this.idFrequencia;
-	}
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	public void setIdFrequencia(Integer idFrequencia) {
-		this.idFrequencia = idFrequencia;
-	}   
-	public Date getData() {
-		return this.data;
-	}
+    @Column
+    private Date date;
 
-	public void setData(Date data) {
-		this.data = data;
-	}   
-	public Date getHoraInicio() {
-		return this.horaInicio;
-	}
+    @Column
+    private Date horaInicio;
 
-	public void setHoraInicio(Date horaInicio) {
-		this.horaInicio = horaInicio;
-	}   
-	public Date getHoraFim() {
-		return this.horaFim;
-	}
+    @Column
+    private Date horaFim;
 
-	public void setHoraFim(Date horaFim) {
-		this.horaFim = horaFim;
-	}   
-	public Matricula getMatricula() {
-		return this.matricula;
-	}
+    @ManyToOne
+    private Matricula matricula;
 
-	public void setMatricula(Matricula matricula) {
-		this.matricula = matricula;
-	}
-   
+    public Frequencia() {
+        super();
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Date getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(Date horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public Date getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(Date horaFim) {
+        this.horaFim = horaFim;
+    }
+
+    public Matricula getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Matricula matricula) {
+        this.matricula = matricula;
+    }
 }

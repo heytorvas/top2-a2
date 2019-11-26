@@ -21,7 +21,7 @@ public class ProfessorBean implements Serializable {
 
 	private Professor professor;
 
-	private List<Professor> listaProfessor;
+	private List<Professor> professores;
 
 	private Integer idPesquisa;
 
@@ -32,23 +32,23 @@ public class ProfessorBean implements Serializable {
 
 	public void insert() {
 		professorEJB.insert(professor);
-		limpar();
+		clean();
 		findAll();
 	}
 
 	private void findAll() {
-		listaProfessor = professorEJB.findAll();
+		professores = professorEJB.findAll();
 	}
 
 	public void update() {
 		professorEJB.update(professor);
-		limpar();
+		clean();
 		findAll();
 	}
 
 	public void delete() {
 		professorEJB.delete(professorEJB.load(idPesquisa));
-		limpar();
+		clean();
 		findAll();
 	}
 
@@ -56,7 +56,7 @@ public class ProfessorBean implements Serializable {
 		professor = professorEJB.load(idPesquisa);
 	}
 
-	public void limpar() {
+	public void clean() {
 		professor = new Professor();
 	}
 
@@ -71,20 +71,20 @@ public class ProfessorBean implements Serializable {
 		this.professor = professor;
 	}
 
-	public List<Professor> getlistaProfessor() {
-		return listaProfessor;
-	}
-
-	public void setlistaProfessor(List<Professor> listaProfessor) {
-		this.listaProfessor = listaProfessor;
-	}
-
 	public Integer getIdPesquisa() {
 		return idPesquisa;
 	}
 
 	public void setIdPesquisa(Integer idPesquisa) {
 		this.idPesquisa = idPesquisa;
+	}
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
 	}
 
 }

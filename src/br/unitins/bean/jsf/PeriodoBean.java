@@ -1,6 +1,7 @@
 package br.unitins.bean.jsf;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +18,7 @@ import br.unitins.model.Periodo;
 @SessionScoped
 public class PeriodoBean implements Serializable {
 
-	private static final long serialVersionUID = -9183439642373115570L;
+	private static final long serialVersionUID = 1L;
 
 	@EJB
 	private PeriodoEJB periodoEJB;
@@ -27,97 +28,95 @@ public class PeriodoBean implements Serializable {
 
 	private Periodo periodo;
 
+	private List<Periodo> periodos;
+
 	private Integer idPesquisa;
 
-	private List<Periodo> listaPeriodo;
+	private List<Disciplina> disciplinas;
 
-	private List<Disciplina> listaDisciplina;
-
-	private Integer idDisciplina;
+	private List<Integer> idDisciplina = new ArrayList<Integer>();
 
 	@PostConstruct
 	public void init() {
-		listaPeriodo = periodoEJB.findAll();
-
+		findAll();
+		findAllDisciplinas();
 	}
 
-	public String insert() {
-
-//		for (int i = 0; i < idDisciplina.size(); i++) {
-//			listaDiscp.add(disciplinaEJB.load(idDisciplina.get(i)));
-//		}
-//		periodo.setDisciplina(listaDiscp);
-
-		periodoEJB.insert(periodo, listaDisciplina);
-		limpar();
-		listaPeriodo = periodoEJB.findAll();
-		return null;
+	private void findAllDisciplinas() {
+		disciplinas = disciplinaEJB.findAll();
 	}
 
-	public String update() {
-		periodo.setIdPeriodo(getIdPesquisa());
-		periodoEJB.update(periodo, listaDisciplina);
-		limpar();
-		listaPeriodo = periodoEJB.findAll();
-		return null;
+	public void insert() {
+		periodoEJB.insert(periodo, disciplinas);
+		clean();
+		findAll();
 	}
 
-	public String delete() {
+	private void findAll() {
+		periodos = periodoEJB.findAll();
+	}
+
+	public void update() {
+		periodoEJB.update(periodo, disciplinas);
+		clean();
+		findAll();
+	}
+
+	public void delete() {
 		periodoEJB.delete(periodoEJB.load(idPesquisa));
-		limpar();
-		listaPeriodo = periodoEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String pesquisar() {
+	public void pesquisar() {
 		periodo = periodoEJB.load(idPesquisa);
-		return null;
 	}
 
-	public String limpar() {
+	public void clean() {
 		periodo = new Periodo();
-		return null;
 	}
 
 	public Periodo getPeriodo() {
-
 		if (periodo == null) {
 			periodo = new Periodo();
 		}
-
 		return periodo;
+	}
+
+	public void setPeriodo(Periodo entity) {
+		this.periodo = entity;
+	}
+
+	public List<Periodo> getPeriodos() {
+		return periodos;
+	}
+
+	public void setPeriodos(List<Periodo> periodos) {
+		this.periodos = periodos;
 	}
 
 	public Integer getIdPesquisa() {
 		return idPesquisa;
 	}
 
-	public List<Disciplina> getListaDisciplina() {
-		return listaDisciplina;
-	}
-
-	public void setListaDisciplina(List<Disciplina> listaDisciplina) {
-		this.listaDisciplina = listaDisciplina;
-	}
-
-	public Integer getIdDisciplina() {
-		return idDisciplina;
-	}
-
-	public void setIdDisciplina(Integer idDisciplina) {
-		this.idDisciplina = idDisciplina;
-	}
-
 	public void setIdPesquisa(Integer idPesquisa) {
 		this.idPesquisa = idPesquisa;
 	}
 
-	public List<Periodo> getListaPeriodo() {
-		return listaPeriodo;
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
 	}
 
-	public void setListaPeriodo(List<Periodo> listaPeriodo) {
-		this.listaPeriodo = listaPeriodo;
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+
+	public List<Integer> getIdDisciplina() {
+		return idDisciplina;
+	}
+
+	public void setIdDisciplina(List<Integer> idDisciplina) {
+		this.idDisciplina = idDisciplina;
 	}
 
 }

@@ -1,15 +1,14 @@
 package br.unitins.bean.jsf;
 
-import java.io.Serializable;
-import java.util.List;
+import br.unitins.bean.ejb.SemestreEJB;
+import br.unitins.model.Semestre;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
-import br.unitins.bean.ejb.SemestreEJB;
-import br.unitins.model.Semestre;
+import java.io.Serializable;
+import java.util.List;
 
 @Named
 @SessionScoped
@@ -22,54 +21,54 @@ public class SemestreBean implements Serializable {
 
 	private Semestre semestre;
 
-	private Integer idPesquisa;
+	private List<Semestre> semestres;
 
-	private List<Semestre> listaSemestre;
+	private Integer idPesquisa;
 
 	@PostConstruct
 	public void init() {
-		listaSemestre = semestreEJB.findAll();
+		findAll();
 	}
 
-	public String insert() {
+	public void insert() {
 		semestreEJB.insert(semestre);
-		limpar();
-		listaSemestre = semestreEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String update() {
-		semestre.setId(getIdPesquisa());
+	private void findAll() {
+		semestres = semestreEJB.findAll();
+	}
+
+	public void update() {
 		semestreEJB.update(semestre);
-		limpar();
-		listaSemestre = semestreEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String delete() {
+	public void delete() {
 		semestreEJB.delete(semestreEJB.load(idPesquisa));
-		limpar();
-		listaSemestre = semestreEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String pesquisar() {
+	public void pesquisar() {
 		semestre = semestreEJB.load(idPesquisa);
-		return null;
 	}
 
-	public String limpar() {
+	public void clean() {
 		semestre = new Semestre();
-		return null;
 	}
 
 	public Semestre getSemestre() {
-
 		if (semestre == null) {
 			semestre = new Semestre();
 		}
-
 		return semestre;
+	}
+
+	public void setSemestre(Semestre semestre) {
+		this.semestre = semestre;
 	}
 
 	public Integer getIdPesquisa() {
@@ -80,12 +79,12 @@ public class SemestreBean implements Serializable {
 		this.idPesquisa = idPesquisa;
 	}
 
-	public List<Semestre> getListaSemestre() {
-		return listaSemestre;
+	public List<Semestre> getSemestres() {
+		return semestres;
 	}
 
-	public void setListaSemestre(List<Semestre> listaSemestre) {
-		this.listaSemestre = listaSemestre;
+	public void setSemestres(List<Semestre> semestres) {
+		this.semestres = semestres;
 	}
 
 }

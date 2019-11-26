@@ -1,50 +1,63 @@
 package br.unitins.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
-import java.lang.Integer;
-import javax.persistence.*;
 
 @Entity
 public class DisciplinaOfertada implements Serializable {
 
-	   
-	@Id
-	private Integer id;
-	private Semestre semestre;
-	private Disciplina disciplina;
-	private Professor professor;
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public DisciplinaOfertada() {
-		super();
-	}   
-	public Integer getId() {
-		return this.id;
-	}
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}   
-	public Semestre getSemestre() {
-		return this.semestre;
-	}
+    @ManyToOne
+    private Semestre semestre;
 
-	public void setSemestre(Semestre semestre) {
-		this.semestre = semestre;
-	}   
-	public Disciplina getDisciplina() {
-		return this.disciplina;
-	}
+    @ManyToOne
+    private Professor professor;
 
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}   
-	public Professor getProfessor() {
-		return this.professor;
-	}
+    @ManyToOne
+    private Disciplina disciplina;
 
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-   
+    public DisciplinaOfertada() {
+        super();
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Semestre getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(Semestre semestre) {
+        this.semestre = semestre;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
 }

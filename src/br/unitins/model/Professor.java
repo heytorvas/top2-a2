@@ -1,45 +1,63 @@
 package br.unitins.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.lang.Integer;
-import java.lang.String;
-import javax.persistence.*;
 
 @Entity
 public class Professor implements Serializable {
 
-	@Id
-	private Integer idProfessor;
-	private String nomeProfesssor;
-	private String email;
 	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	@Column
+	private String nome;
+
+	@Column
+	private String email;
+
+	@Column
+	private String registro;
 
 	public Professor() {
 		super();
 	}
 
-	public Integer getIdProfessor() {
-		return this.idProfessor;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setIdProfessor(Integer idProfessor) {
-		this.idProfessor = idProfessor;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getNomeProfesssor() {
-		return this.nomeProfesssor;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeProfesssor(String nomeProfesssor) {
-		this.nomeProfesssor = nomeProfesssor;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getRegistro() {
+		return registro;
+	}
+
+	public void setRegistro(String registro) {
+		this.registro = registro;
 	}
 
 }

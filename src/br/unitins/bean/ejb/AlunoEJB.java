@@ -2,7 +2,6 @@ package br.unitins.bean.ejb;
 
 import br.unitins.model.Aluno;
 
-
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +9,6 @@ import java.util.List;
 
 @Stateful
 public class AlunoEJB {
-	
     @PersistenceContext
     private EntityManager em;
 
@@ -23,7 +21,7 @@ public class AlunoEJB {
     }
 
     public void delete(Aluno aluno) {
-        Aluno tmpAluno = load(aluno.getIdAluno());
+        Aluno tmpAluno = load(aluno.getId());
         em.remove(tmpAluno);
     }
 
@@ -32,6 +30,6 @@ public class AlunoEJB {
     }
 
     public List<Aluno> findAll() {
-        return em.createQuery("select tp from Aluno tp", Aluno.class).getResultList();
+        return em.createQuery("select al from Aluno al", Aluno.class).getResultList();
     }
 }

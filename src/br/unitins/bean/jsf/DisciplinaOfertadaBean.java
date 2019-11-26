@@ -1,94 +1,109 @@
 package br.unitins.bean.jsf;
 
-import java.io.Serializable;
-import java.util.List;
+import br.unitins.bean.ejb.DisciplinaOfertadaEJB;
+import br.unitins.model.DisciplinaOfertada;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
-import br.unitins.bean.ejb.DisciplinaOfertadaEJB;
-import br.unitins.model.DisciplinaOfertada;
+import java.io.Serializable;
+import java.util.List;
 
 @Named
 @SessionScoped
 public class DisciplinaOfertadaBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@EJB
-	private DisciplinaOfertadaEJB disciplinaOfertadaEJB;
+    @EJB
+    private DisciplinaOfertadaEJB disciplinaOfertadaEJB;
 
-	private DisciplinaOfertada discplinaOfertada;
+    private DisciplinaOfertada disciplinaOfertada;
 
-	private Integer idPesquisa;
-	private Integer idSemestre;
-	private Integer idProfessor;
-	private Integer idDisciplina;
+    private List<DisciplinaOfertada> disciplinaOfertadas;
 
-	private List<DisciplinaOfertada> listaOfertada;
+    private Integer idPesquisa;
+    private Integer idDisciplina;
+    private Integer idSemestre;
+    private Integer idProfessor;
 
-	@PostConstruct
-	public void init() {
-		listaOfertada = disciplinaOfertadaEJB.findAll();
-	}
 
-	public String insert() {
-		disciplinaOfertadaEJB.insert(discplinaOfertada, idSemestre, idDisciplina, idProfessor);
-		limpar();
-		listaOfertada = disciplinaOfertadaEJB.findAll();
-		return null;
-	}
+    @PostConstruct
+    public void init() {
+        findAll();
+    }
 
-	public String update() {
-		discplinaOfertada.setId(getIdPesquisa());
-		disciplinaOfertadaEJB.update(discplinaOfertada, idSemestre, idDisciplina, idProfessor);
-		limpar();
-		listaOfertada = disciplinaOfertadaEJB.findAll();
-		return null;
-	}
+    public void insert() {
+        disciplinaOfertadaEJB.insert(disciplinaOfertada, idSemestre, idDisciplina, idProfessor);
+        clean();
+        findAll();
+    }
 
-	public String delete() {
-		disciplinaOfertadaEJB.delete(disciplinaOfertadaEJB.load(idPesquisa));
-		limpar();
-		listaOfertada = disciplinaOfertadaEJB.findAll();
-		return null;
-	}
+    private void findAll() {
+        disciplinaOfertadas = disciplinaOfertadaEJB.findAll();
+    }
 
-	public String pesquisar() {
-		discplinaOfertada = disciplinaOfertadaEJB.load(idPesquisa);
-		return null;
-	}
+    public void update() {
+        disciplinaOfertadaEJB.update(disciplinaOfertada, idSemestre, idDisciplina, idProfessor);
+        clean();
+        findAll();
+    }
 
-	public String limpar() {
-		discplinaOfertada = new DisciplinaOfertada();
-		return null;
-	}
+    public void delete() {
+        disciplinaOfertadaEJB.delete(disciplinaOfertadaEJB.load(idPesquisa));
+        clean();
+        findAll();
+    }
 
-	public DisciplinaOfertada getDisciplinaOfertada() {
+    public void pesquisar() {
+        disciplinaOfertada = disciplinaOfertadaEJB.load(idPesquisa);
+    }
 
-		if (discplinaOfertada == null) {
-			discplinaOfertada = new DisciplinaOfertada();
-		}
+    public void clean() {
+        disciplinaOfertada = new DisciplinaOfertada();
+    }
 
-		return discplinaOfertada;
-	}
+    public DisciplinaOfertada getDisciplinaOfertada() {
+        if (disciplinaOfertada == null) {
+            disciplinaOfertada = new DisciplinaOfertada();
+        }
+        return disciplinaOfertada;
+    }
 
-	public Integer getIdPesquisa() {
-		return idPesquisa;
-	}
+    public void setDisciplinaOfertada(DisciplinaOfertada disciplinaOfertada) {
+        this.disciplinaOfertada = disciplinaOfertada;
+    }
 
-	public void setIdPesquisa(Integer idPesquisa) {
-		this.idPesquisa = idPesquisa;
-	}
+    public Integer getIdPesquisa() {
+        return idPesquisa;
+    }
 
-	public List<DisciplinaOfertada> getListaOfertada() {
-		return listaOfertada;
-	}
+    public void setIdPesquisa(Integer idPesquisa) {
+        this.idPesquisa = idPesquisa;
+    }
 
-	public void setListaOfertada(List<DisciplinaOfertada> listaOfertada) {
-		this.listaOfertada = listaOfertada;
-	}
+    public Integer getIdDisciplina() {
+        return idDisciplina;
+    }
 
+    public void setIdDisciplina(Integer idDisciplina) {
+        this.idDisciplina = idDisciplina;
+    }
+
+    public Integer getIdSemestre() {
+        return idSemestre;
+    }
+
+    public void setIdSemestre(Integer idSemestre) {
+        this.idSemestre = idSemestre;
+    }
+
+    public Integer getIdProfessor() {
+        return idProfessor;
+    }
+
+    public void setIdProfessor(Integer idProfessor) {
+        this.idProfessor = idProfessor;
+    }
 }

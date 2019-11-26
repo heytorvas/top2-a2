@@ -1,44 +1,52 @@
 package br.unitins.model;
 
-import br.unitins.model.Aluno;
-import br.unitins.model.DisciplinaOfertada;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
-import java.lang.Integer;
-import javax.persistence.*;
 
 @Entity
 public class Matricula implements Serializable {
 
-	   
-	@Id
-	private Integer idMatricula;
-	private Aluno aluno;
-	private DisciplinaOfertada disciplinaOfertada;
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public Matricula() {
-		super();
-	}   
-	public Integer getIdMatricula() {
-		return this.idMatricula;
-	}
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	public void setIdMatricula(Integer idMatricula) {
-		this.idMatricula = idMatricula;
-	}   
-	public Aluno getAluno() {
-		return this.aluno;
-	}
+    @ManyToOne
+    private Aluno aluno;
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}   
-	public DisciplinaOfertada getDisciplinaOfertada() {
-		return this.disciplinaOfertada;
-	}
+    @ManyToOne
+    private DisciplinaOfertada disciplina;
 
-	public void setDisciplinaOfertada(DisciplinaOfertada disciplinaOfertada) {
-		this.disciplinaOfertada = disciplinaOfertada;
-	}
-   
+    public Matricula() {
+        super();
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public DisciplinaOfertada getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(DisciplinaOfertada disciplina) {
+        this.disciplina = disciplina;
+    }
 }

@@ -22,16 +22,17 @@
 				<p:panelGrid columns="2" cellpadding="10">
 	   
 		    ID:
-		    <p:outputLabel value="#{cursoBean.curso.idCurso}" />
+		    <p:outputLabel value="#{cursoBean.curso.id}" />
 	
 	        NOME:
-		    <p:inputText value="#{cursoBean.curso.nomeCurso}" />
+		    <p:inputText value="#{cursoBean.curso.nome}" />
 
-			ID UNIDADE ORGANIZACIONAL:
-		    <p:inputText value="#{cursoBean.idFaculdade}" />
-		    
-		    ID MATRIZ: 
-		    <p:inputText value="#{cursoBean.idMatrizCurricular}" />
+			INSTITUIÇÃO:
+		    <p:selectOneMenu value="#{cursoBean.idInstituicao}">
+						<f:selectItem itemLabel="Selecione a Instituição..." />
+						<f:selectItems value="#{instituicaoBean.instituicoes}" var="i"
+							itemValue="#{i.idInstituicao}" itemLabel="#{i.nome}" />
+					</p:selectOneMenu>
 
 				</p:panelGrid>
 
@@ -45,7 +46,7 @@
 				<p:commandButton value="Deletar" action="#{cursoBean.delete}"
 					update="form1,data1" />
 
-				<p:commandButton value="Limpar" action="#{cursoBean.limpar}"
+				<p:commandButton value="Limpar" action="#{cursoBean.clean}"
 					update="form1" />
 
 				<p:messages />
@@ -54,30 +55,23 @@
 
 		<br />
 
-		<p:dataTable id="data1" var="c" value="#{cursoBean.listaCurso}">
+		<p:dataTable id="data1" var="c" value="#{cursoBean.cursos}">
 			<f:facet name="header">
             CURSOS
             </f:facet>
 
 			<p:column headerText="ID">
-				<h:outputText value="#{c.idCurso}" />
+				<h:outputText value="#{c.id}" />
 			</p:column>
 
 			<p:column headerText="NOME">
-				<h:outputText value="#{c.nomeCurso}" />
+				<h:outputText value="#{c.nome}" />
 			</p:column>
 
-			<p:column headerText="UNIDADE ORGANIZACIONAL">
-				<h:outputText value="#{c.faculdade.nomeFaculdade}" />
+			<p:column headerText="INSTITUIÇÃO">
+				<h:outputText value="#{obj.instituicao.nome}" />
 			</p:column>
-			
-			<p:column headerText="DISCIPLINA">
-				<h:outputText value="#{c.matrizCurricular.disciplinaNome}" />
-			</p:column>
-			
-			<p:column headerText="PERÍODO">
-				<h:outputText value="#{c.matrizCurricular.disciplinaPeriodo}" />
-			</p:column>
+
 		</p:dataTable>
 
 	</ui:define>

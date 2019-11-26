@@ -1,48 +1,53 @@
 package br.unitins.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class MatrizCurricular implements Serializable {
 
-	@Id
-	private Integer idMatriz;
-	private String nomeMatriz;
-	private Integer ch;
-	private Curso curso;
-	
-	@OneToMany
-	private List<Periodo> listaPeriodo;
-	
 	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	@Column
+	private String nome;
+
+	@Column
+	private Integer ch;
+
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JoinColumn(name = "fk_curso")
+	private Curso curso;
+
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	private List<Periodo> periodos;
 
 	public MatrizCurricular() {
 		super();
 	}
 
-	public Integer getIdMatriz() {
-		return this.idMatriz;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setIdMatriz(Integer idMatriz) {
-		this.idMatriz = idMatriz;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getNomeMatriz() {
-		return this.nomeMatriz;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeMatriz(String nomeMatriz) {
-		this.nomeMatriz = nomeMatriz;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Integer getCh() {
-		return this.ch;
+		return ch;
 	}
 
 	public void setCh(Integer ch) {
@@ -50,19 +55,18 @@ public class MatrizCurricular implements Serializable {
 	}
 
 	public Curso getCurso() {
-		return this.curso;
+		return curso;
 	}
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
 
-	public List<Periodo> getListaPeriodo() {
-		return this.listaPeriodo;
+	public List<Periodo> getPeriodos() {
+		return periodos;
 	}
 
-	public void setListaPeriodo(List<Periodo> listaPeriodo) {
-		this.listaPeriodo = listaPeriodo;
+	public void setPeriodos(List<Periodo> periodos) {
+		this.periodos = periodos;
 	}
-
 }

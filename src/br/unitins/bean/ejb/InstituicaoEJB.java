@@ -1,37 +1,35 @@
 package br.unitins.bean.ejb;
 
-import java.util.List;
+import br.unitins.model.Instituicao;
 
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import br.unitins.model.Instituicao;
+import java.util.List;
 
 @Stateful
 public class InstituicaoEJB {
+    @PersistenceContext
+    private EntityManager em;
 
-	@PersistenceContext
-	private EntityManager em;
+    public void insert(Instituicao instituicao) {
+        em.persist(instituicao);
+    }
 
-	public void insert(Instituicao instituicao) {
-		em.persist(instituicao);
-	}
+    public void update(Instituicao instituicao) {
+        em.merge(instituicao);
+    }
 
-	public void update(Instituicao instituicao) {
-		em.merge(instituicao);
-	}
+    public void delete(Instituicao instituicao) {
+        Instituicao tmpInstituicao = load(instituicao.getIdInstituicao());
+        em.remove(tmpInstituicao);
+    }
 
-	public void delete(Instituicao instituicao) {
-		Instituicao tmpFaculdade = load(instituicao.getIdInstituicao());
-		em.remove(tmpFaculdade);
-	}
+    public Instituicao load(Integer id) {
+        return em.find(Instituicao.class, id);
+    }
 
-	public Instituicao load(Integer id) {
-		return em.find(Instituicao.class, id);
-	}
-
-	public List<Instituicao> findAll() {
-		return em.createQuery("select tp from Faculdade tp", Instituicao.class).getResultList();
-	}
+    public List<Instituicao> findAll() {
+        return em.createQuery("select tp from Instituicao tp", Instituicao.class).getResultList();
+    }
 }

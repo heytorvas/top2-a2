@@ -30,7 +30,8 @@
 								<p:menuitem value="Home" outcome="home">
 									<f:param name="i" value="0" />
 								</p:menuitem>
-                                <p:menuitem value="Cadastrar Aluno/Professor" outcome="menu-aluno-professor">
+								<p:menuitem value="Cadastrar Aluno/Professor"
+									outcome="menu-aluno-professor">
 									<f:param name="i" value="1" />
 								</p:menuitem>
 								<p:menuitem value="Disciplina" outcome="disciplina">
@@ -39,14 +40,17 @@
 								<p:menuitem value="Período" outcome="periodo">
 									<f:param name="i" value="3" />
 								</p:menuitem>
-								<p:menuitem value="Unidade Organizacional" outcome="unidade">
+								<p:menuitem value="Instituição" outcome="instituicao">
 									<f:param name="i" value="4" />
 								</p:menuitem>
-								<p:menuitem value="Matriz" outcome="matriz">
+								<p:menuitem value="Curso" outcome="curso">
 									<f:param name="i" value="5" />
 								</p:menuitem>
-								<p:menuitem value="Curso" outcome="curso">
+								<p:menuitem value="Semestre" outcome="semestre">
 									<f:param name="i" value="6" />
+								</p:menuitem>
+								<p:menuitem value="Matriz" outcome="matriz-curricular">
+									<f:param name="i" value="7" />
 								</p:menuitem>
 							</p:menubar>
 						</h:panelGrid>
@@ -57,33 +61,35 @@
 		</aside>
 	</center>
 
-	<main> <br />
-	<ui:insert name="main">
+	<main>
+		<br />
+		<ui:insert name="main">
 
-		<center>
-			<h2>Etapa 01</h2>
+			<center>
+				<h2>Etapa 01</h2>
 
-			<h3>- Fazer o Diagrama de Classe: Unidade Organizacional
-				"Faculdade", Curso, Matriz Curricular (Periodo Letivo "Semestre" e
-				Disciplinas);</h3>
+				<h3>- Fazer o Diagrama de Classe: Unidade Organizacional
+					"Faculdade", Curso, Matriz Curricular (Periodo Letivo "Semestre" e
+					Disciplinas);</h3>
 
-			<h3>- Implementar o CRUD do Diagrama de classe Proposto.</h3>
+				<h3>- Implementar o CRUD do Diagrama de classe Proposto.</h3>
 
-			<h2>Etapa 02</h2>
+				<h2>Etapa 02</h2>
 
-			<h3>- Continuação do Diagrama de Classe: Aluno, Professor,
-				Matricula, Turma, Nota, Frequência;</h3>
+				<h3>- Continuação do Diagrama de Classe: Aluno, Professor,
+					Matricula, Turma, Nota, Frequência;</h3>
 
-			<h3>- Implementar o CRUD do Diagrama de classe Proposto.</h3>
+				<h3>- Implementar o CRUD do Diagrama de classe Proposto.</h3>
 
-		</center>
-	</ui:insert> </main>
+			</center>
+		</ui:insert>
+	</main>
 	<center>
 		<footer>
 			<hr />
 			<br />
 			<div>
-				<h:outputText value="2019 - MATHEUS PIMENTEL DO COUTO - UNITINS." />
+				<h:outputText value="2019 - HVAS - Todos os direitos reservados." />
 			</div>
 
 		</footer>

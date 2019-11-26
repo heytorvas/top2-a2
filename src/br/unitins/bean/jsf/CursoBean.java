@@ -1,9 +1,7 @@
 package br.unitins.bean.jsf;
 
 import br.unitins.bean.ejb.CursoEJB;
-import br.unitins.bean.ejb.InstituicaoEJB;
 import br.unitins.model.Curso;
-import br.unitins.model.Instituicao;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,64 +19,57 @@ public class CursoBean implements Serializable {
 	@EJB
 	private CursoEJB cursoEJB;
 
-	@EJB
-	private InstituicaoEJB instituicaoEJB;
-
 	private Curso curso;
 
-	private Integer idInstituicao;
+	private List<Curso> cursos;
 
 	private Integer idPesquisa;
-
-	private List<Curso> listaCurso;
-
-	private List<Instituicao> listaInstituicao;
+	private Integer idInstituicao;
 
 	@PostConstruct
 	public void init() {
-		listaCurso = cursoEJB.findAll();
-		setListaInstituicao(instituicaoEJB.findAll());
+		findAll();
 	}
 
-	public String insert() {
+	public void insert() {
 		cursoEJB.insert(curso, idInstituicao);
-		limpar();
-		listaCurso = cursoEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String update() {
-		curso.setIdCurso(getIdPesquisa());
+	private void findAll() {
+		cursos = cursoEJB.findAll();
+	}
+
+	public void update() {
 		cursoEJB.update(curso, idInstituicao);
-		limpar();
-		listaCurso = cursoEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String delete() {
+	public void delete() {
 		cursoEJB.delete(cursoEJB.load(idPesquisa));
-		limpar();
-		listaCurso = cursoEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String pesquisar() {
+	public void pesquisar() {
 		curso = cursoEJB.load(idPesquisa);
-		return null;
 	}
 
-	public String limpar() {
+	public void clean() {
 		curso = new Curso();
-		return null;
 	}
 
 	public Curso getCurso() {
-
 		if (curso == null) {
 			curso = new Curso();
 		}
-
 		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 	public Integer getIdPesquisa() {
@@ -97,20 +88,12 @@ public class CursoBean implements Serializable {
 		this.idInstituicao = idInstituicao;
 	}
 
-	public List<Instituicao> getListaInstituicao() {
-		return listaInstituicao;
+	public List<Curso> getCursos() {
+		return cursos;
 	}
 
-	public void setListaInstituicao(List<Instituicao> listaInstituicao) {
-		this.listaInstituicao = listaInstituicao;
-	}
-
-	public List<Curso> getlistaCurso() {
-		return listaCurso;
-	}
-
-	public void setlistaCurso(List<Curso> listaCurso) {
-		this.listaCurso = listaCurso;
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
 
 }

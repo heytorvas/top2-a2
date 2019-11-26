@@ -21,54 +21,54 @@ public class InstituicaoBean implements Serializable {
 
 	private Instituicao instituicao;
 
-	private Integer idPesquisa;
+	private List<Instituicao> instituicoes;
 
-	private List<Instituicao> listaInstituicao;
+	private Integer idPesquisa;
 
 	@PostConstruct
 	public void init() {
-		listaInstituicao = instituicaoEJB.findAll();
+		findAll();
 	}
 
-	public String insert() {
+	public void insert() {
 		instituicaoEJB.insert(instituicao);
-		limpar();
-		listaInstituicao = instituicaoEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String update() {
-		instituicao.setIdInstituicao(getIdPesquisa());
+	private void findAll() {
+		instituicoes = instituicaoEJB.findAll();
+	}
+
+	public void update() {
 		instituicaoEJB.update(instituicao);
-		limpar();
-		listaInstituicao = instituicaoEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String delete() {
+	public void delete() {
 		instituicaoEJB.delete(instituicaoEJB.load(idPesquisa));
-		limpar();
-		listaInstituicao = instituicaoEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String pesquisar() {
+	public void pesquisar() {
 		instituicao = instituicaoEJB.load(idPesquisa);
-		return null;
 	}
 
-	public String limpar() {
+	public void clean() {
 		instituicao = new Instituicao();
-		return null;
 	}
 
 	public Instituicao getInstituicao() {
-
 		if (instituicao == null) {
 			instituicao = new Instituicao();
 		}
-
 		return instituicao;
+	}
+
+	public void setInstituicao(Instituicao entity) {
+		this.instituicao = entity;
 	}
 
 	public Integer getIdPesquisa() {
@@ -79,12 +79,12 @@ public class InstituicaoBean implements Serializable {
 		this.idPesquisa = idPesquisa;
 	}
 
-	public List<Instituicao> getListaInstituicao() {
-		return listaInstituicao;
+	public List<Instituicao> getInstituicoes() {
+		return instituicoes;
 	}
 
-	public void setListaInstituicao(List<Instituicao> listaInstituicao) {
-		this.listaInstituicao = listaInstituicao;
+	public void setInstituicoes(List<Instituicao> instituicoes) {
+		this.instituicoes = instituicoes;
 	}
 
 }

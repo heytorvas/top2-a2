@@ -1,60 +1,69 @@
 package br.unitins.model;
 
-import br.unitins.model.Matricula;
-import java.io.Serializable;
-import java.lang.Double;
-import java.lang.Integer;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 public class Nota implements Serializable {
 
-	   
-	@Id
-	private Integer idNota;
-	private Double nota1;
-	private Double nota2;
-	private Double exame;
-	private Matricula matricula;
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public Nota() {
-		super();
-	}   
-	public Integer getIdNota() {
-		return this.idNota;
-	}
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	public void setIdNota(Integer idNota) {
-		this.idNota = idNota;
-	}   
-	public Double getNota1() {
-		return this.nota1;
-	}
+    @Column
+    private Double nota1;
+    @Column
+    private Double nota2;
+    @Column
+    private Double exame;
 
-	public void setNota1(Double nota1) {
-		this.nota1 = nota1;
-	}   
-	public Double getNota2() {
-		return this.nota2;
-	}
+    @OneToOne
+    private Matricula matricula;
 
-	public void setNota2(Double nota2) {
-		this.nota2 = nota2;
-	}   
-	public Double getExame() {
-		return this.exame;
-	}
+    public Nota() {
+        super();
+    }
 
-	public void setExame(Double exame) {
-		this.exame = exame;
-	}   
-	public Matricula getMatricula() {
-		return this.matricula;
-	}
 
-	public void setMatricula(Matricula matricula) {
-		this.matricula = matricula;
-	}
-   
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Double getNota1() {
+        return nota1;
+    }
+
+    public void setNota1(Double nota1) {
+        this.nota1 = nota1;
+    }
+
+    public Double getNota2() {
+        return nota2;
+    }
+
+    public void setNota2(Double nota2) {
+        this.nota2 = nota2;
+    }
+
+    public Double getExame() {
+        return exame;
+    }
+
+    public void setExame(Double exame) {
+        this.exame = exame;
+    }
+
+    public Matricula getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Matricula matricula) {
+        this.matricula = matricula;
+    }
 }

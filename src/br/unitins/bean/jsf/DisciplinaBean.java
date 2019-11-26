@@ -1,83 +1,74 @@
 package br.unitins.bean.jsf;
 
-import java.io.Serializable;
-import java.util.List;
+import br.unitins.bean.ejb.DisciplinaEJB;
+import br.unitins.model.Disciplina;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
-import br.unitins.bean.ejb.DisciplinaEJB;
-import br.unitins.model.Disciplina;
+import java.io.Serializable;
+import java.util.List;
 
 @Named
 @SessionScoped
 public class DisciplinaBean implements Serializable {
 
-	private static final long serialVersionUID = 1932440258663850981L;
+	private static final long serialVersionUID = 1L;
 
 	@EJB
 	private DisciplinaEJB disciplinaEJB;
 
 	private Disciplina disciplina;
 
+	private List<Disciplina> disciplinas;
+
 	private Integer idPesquisa;
-	
-	private List<Disciplina> listaDisciplina;
 
 	@PostConstruct
 	public void init() {
-		listaDisciplina = disciplinaEJB.findAll();
+		findAll();
 	}
 
-	public String insert() {
+	public void insert() {
 		disciplinaEJB.insert(disciplina);
-		limpar();
-		listaDisciplina = disciplinaEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String update() {
-		disciplina.setIdDisciplina(getIdPesquisa());
+	private void findAll() {
+		disciplinas = disciplinaEJB.findAll();
+	}
+
+	public void update() {
 		disciplinaEJB.update(disciplina);
-		limpar();
-		listaDisciplina = disciplinaEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String delete() {
+	public void delete() {
 		disciplinaEJB.delete(disciplinaEJB.load(idPesquisa));
-		limpar();
-		listaDisciplina = disciplinaEJB.findAll();
-		return null;
+		clean();
+		findAll();
 	}
 
-	public String pesquisar() {
+	public void pesquisar() {
 		disciplina = disciplinaEJB.load(idPesquisa);
-		return null;
 	}
 
-	public String limpar() {
+	public void clean() {
 		disciplina = new Disciplina();
-		return null;
 	}
 
 	public Disciplina getDisciplina() {
-
 		if (disciplina == null) {
 			disciplina = new Disciplina();
 		}
-
 		return disciplina;
 	}
 
-	public List<Disciplina> getListaDisciplina() {
-		return listaDisciplina;
-	}
-
-	public void setListaDisciplina(List<Disciplina> listaDisciplina) {
-		this.listaDisciplina = listaDisciplina;
+	public void setDisciplina(Disciplina entity) {
+		this.disciplina = entity;
 	}
 
 	public Integer getIdPesquisa() {
@@ -86,6 +77,14 @@ public class DisciplinaBean implements Serializable {
 
 	public void setIdPesquisa(Integer idPesquisa) {
 		this.idPesquisa = idPesquisa;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 
 }

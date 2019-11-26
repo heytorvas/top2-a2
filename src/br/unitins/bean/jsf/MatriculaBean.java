@@ -14,86 +14,87 @@ import java.util.List;
 @SessionScoped
 public class MatriculaBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@EJB
-	private MatriculaEJB matriculaEJB;
+    @EJB
+    private MatriculaEJB matriculaEJB;
 
-	private Matricula matricula;
+    private Matricula matricula;
 
-	private List<Matricula> matriculas;
+    private List<Matricula> matriculas;
 
-	private Integer disciplinaOfertada;
+    private Integer idPesquisa;
+    private Integer idAluno;
+    private Integer idDisciplinaOF;
 
-	private Integer idPesquisa;
 
-	@PostConstruct
-	public void init() {
-		findAll();
-	}
+    @PostConstruct
+    public void init() {
+        findAll();
+    }
 
-	public void insert() {
-		matriculaEJB.insert(matricula, disciplinaOfertada);
-		clean();
-		findAll();
-	}
+    public void insert() {
+        matriculaEJB.insert(matricula, idAluno, idDisciplinaOF);
+        clean();
+        findAll();
+    }
 
-	private void findAll() {
-		matriculas = matriculaEJB.findAll();
-	}
+    private void findAll() {
+        matriculas = matriculaEJB.findAll();
+    }
 
-	public void update() {
-		matriculaEJB.update(matricula, disciplinaOfertada);
-		clean();
-		findAll();
-	}
+    public void update() {
+        matriculaEJB.update(matricula, idAluno, idDisciplinaOF);
+        clean();
+        findAll();
+    }
 
-	public void delete() {
-		matriculaEJB.delete(matriculaEJB.load(idPesquisa));
-		clean();
-		findAll();
-	}
+    public void delete() {
+        matriculaEJB.delete(matriculaEJB.load(idPesquisa));
+        clean();
+        findAll();
+    }
 
-	public void find() {
-		matricula = matriculaEJB.load(idPesquisa);
-	}
+    public void pesquisar() {
+        matricula = matriculaEJB.load(idPesquisa);
+    }
 
-	public void clean() {
-		matricula = new Matricula();
-	}
+    public void clean() {
+        matricula = new Matricula();
+    }
 
-	public Matricula getMatricula() {
-		if (matricula == null) {
-			matricula = new Matricula();
-		}
-		return matricula;
-	}
+    public Matricula getMatricula() {
+        if (matricula == null) {
+            matricula = new Matricula();
+        }
+        return matricula;
+    }
 
-	public void setMatricula(Matricula entity) {
-		this.matricula = entity;
-	}
+    public void setMatricula(Matricula matricula) {
+        this.matricula = matricula;
+    }
 
-	public List<Matricula> getMatriculas() {
-		return matriculas;
-	}
+    public Integer getIdPesquisa() {
+        return idPesquisa;
+    }
 
-	public void setMatriculas(List<Matricula> matriculas) {
-		this.matriculas = matriculas;
-	}
+    public void setIdPesquisa(Integer idPesquisa) {
+        this.idPesquisa = idPesquisa;
+    }
 
-	public Integer getDisciplinaOfertada() {
-		return disciplinaOfertada;
-	}
+    public Integer getIdAluno() {
+        return idAluno;
+    }
 
-	public void setDisciplinaOfertada(Integer disciplinaOfertada) {
-		this.disciplinaOfertada = disciplinaOfertada;
-	}
+    public void setIdAluno(Integer idAluno) {
+        this.idAluno = idAluno;
+    }
 
-	public Integer getIdPesquisa() {
-		return idPesquisa;
-	}
+    public Integer getIdDisciplinaOF() {
+        return idDisciplinaOF;
+    }
 
-	public void setIdPesquisa(Integer idPesquisa) {
-		this.idPesquisa = idPesquisa;
-	}
+    public void setIdDisciplinaOF(Integer idDisciplinaOF) {
+        this.idDisciplinaOF = idDisciplinaOF;
+    }
 }

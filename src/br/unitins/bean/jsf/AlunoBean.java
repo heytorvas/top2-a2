@@ -21,7 +21,7 @@ public class AlunoBean implements Serializable {
 
 	private Aluno aluno;
 
-	private List<Aluno> listaAluno;
+	private List<Aluno> alunos;
 
 	private Integer idPesquisa;
 
@@ -32,23 +32,23 @@ public class AlunoBean implements Serializable {
 
 	public void insert() {
 		alunoEJB.insert(aluno);
-		limpar();
+		clean();
 		findAll();
 	}
 
 	private void findAll() {
-		listaAluno = alunoEJB.findAll();
+		alunos = alunoEJB.findAll();
 	}
 
 	public void update() {
 		alunoEJB.update(aluno);
-		limpar();
+		clean();
 		findAll();
 	}
 
 	public void delete() {
 		alunoEJB.delete(alunoEJB.load(idPesquisa));
-		limpar();
+		clean();
 		findAll();
 	}
 
@@ -56,7 +56,7 @@ public class AlunoBean implements Serializable {
 		aluno = alunoEJB.load(idPesquisa);
 	}
 
-	public void limpar() {
+	public void clean() {
 		aluno = new Aluno();
 	}
 
@@ -67,16 +67,8 @@ public class AlunoBean implements Serializable {
 		return aluno;
 	}
 
-	public void setAluno(Aluno entity) {
-		this.aluno = entity;
-	}
-
-	public List<Aluno> getlistaAluno() {
-		return listaAluno;
-	}
-
-	public void setlistaAluno(List<Aluno> listaAluno) {
-		this.listaAluno = listaAluno;
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 
 	public Integer getIdPesquisa() {
@@ -85,6 +77,14 @@ public class AlunoBean implements Serializable {
 
 	public void setIdPesquisa(Integer idPesquisa) {
 		this.idPesquisa = idPesquisa;
+	}
+
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 
 }

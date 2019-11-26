@@ -1,44 +1,52 @@
 package br.unitins.model;
 
-import br.unitins.model.Instituicao;
-import java.io.Serializable;
-import java.lang.Integer;
-import java.lang.String;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 public class Curso implements Serializable {
 
-	   
-	@Id
-	private Integer idCurso;
-	private String nomeCurso;
-	private Instituicao instituicao;
-	private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	public Curso() {
-		super();
-	}   
-	public Integer getIdCurso() {
-		return this.idCurso;
-	}
+    @Column
+    private String nome;
 
-	public void setIdCurso(Integer idCurso) {
-		this.idCurso = idCurso;
-	}   
-	public String getNomeCurso() {
-		return this.nomeCurso;
-	}
+    @ManyToOne
+    private Instituicao instituicao;
 
-	public void setNomeCurso(String nomeCurso) {
-		this.nomeCurso = nomeCurso;
-	}   
-	public Instituicao getInstituicao() {
-		return this.instituicao;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public void setInstituicao(Instituicao instituicao) {
-		this.instituicao = instituicao;
-	}
-   
+    public Curso() {
+        super();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Instituicao getInstituicao() {
+        return instituicao;
+    }
+
+    public void setInstituicao(Instituicao instituicao) {
+        this.instituicao = instituicao;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 }

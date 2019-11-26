@@ -1,51 +1,63 @@
 package br.unitins.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.lang.Integer;
-import java.lang.String;
-import javax.persistence.*;
 
 @Entity
 public class Disciplina implements Serializable {
 
-	   
-	@Id
-	private Integer idDisciplina;
-	private String codigo;
-	private String nome;
-	private Integer ch;
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public Disciplina() {
-		super();
-	}   
-	public Integer getIdDisciplina() {
-		return this.idDisciplina;
-	}
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	public void setIdDisciplina(Integer idDisciplina) {
-		this.idDisciplina = idDisciplina;
-	}   
-	public String getCodigo() {
-		return this.codigo;
-	}
+    @Column
+    private String codigo;
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}   
-	public String getNome() {
-		return this.nome;
-	}
+    @Column
+    private String nome;
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}   
-	public Integer getCh() {
-		return this.ch;
-	}
+    @Column
+    private Integer ch;
 
-	public void setCh(Integer ch) {
-		this.ch = ch;
-	}
-   
+    public Disciplina() {
+        super();
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Integer getCh() {
+        return ch;
+    }
+
+    public void setCh(Integer ch) {
+        this.ch = ch;
+    }
 }

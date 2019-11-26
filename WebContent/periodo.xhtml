@@ -28,9 +28,8 @@
 		    <p:inputText value="#{periodoBean.periodo.numero}" />
 
 			DISCIPLINAS:
-			
-		    <h:selectManyCheckbox value="#{periodoBean.periodo.disciplina}">
-						<f:selectItems value="#{disciplinaBean.listaDisciplina}" var="d"
+		    <h:selectManyCheckbox value="#{periodoBean.idDisciplina}">
+						<f:selectItems value="#{disciplinaBean.disciplinas}" var="d"
 							itemValue="#{d.id}" itemLabel="#{d.nome}" />
 					</h:selectManyCheckbox>
 				</p:panelGrid>
@@ -45,7 +44,7 @@
 				<p:commandButton value="Deletar" action="#{periodoBean.delete}"
 					update="form1,data1" />
 
-				<p:commandButton value="Limpar" action="#{periodoBean.limpar}"
+				<p:commandButton value="Limpar" action="#{periodoBean.clean}"
 					update="form1" />
 
 				<p:messages />
@@ -54,7 +53,7 @@
 
 		<br />
 
-		<p:dataTable id="data1" var="p" value="#{periodoBean.listaPeriodo}">
+		<p:dataTable id="data1" var="p" value="#{periodoBean.periodos}">
 			<f:facet name="header">
             PERÍODOS
             </f:facet>
@@ -67,10 +66,9 @@
 			</p:column>
 
 			<p:column headerText="DISCIPLINAS">
-				<ui:repeat var="d" value="#{p.disciplina}">
-			       #{d.nome}<br />
-				</ui:repeat>
+				<h:outputText value="#{p.disciplinas}" />
 			</p:column>
+
 		</p:dataTable>
 
 
