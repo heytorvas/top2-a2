@@ -9,91 +9,101 @@
 	<meta charset="utf-8" name="viewport"
 		content="width=device-width, initial-scale=1"
 		http-equiv="X-UA-Conpatible" />
-	<title>SISTEMA ACADÊMICO</title>
+	<title>CRUD</title>
 </h:head>
 
 <h:body>
-	<center>
-		<header>
-			<div>
-				<h1>SISTEMA ACADÊMICO</h1>
-			</div>
-		</header>
 
-		<aside>
-			<div>
-				<ui:insert name="menu">
-					<h:form>
-						<hr />
-						<h:panelGrid columns="6">
+	<header class="o-header">
+		<div class="box navbar navbar-inverse header">
+			<h1>CRUD</h1>
+		</div>
+	</header>
+
+	<aside class="o-aside">
+		<div class="box sidebar" style="text-align: center;">
+			<ui:insert name="menu">
+				<h:form>
+					<hr />
+					<center>
+						<h:panelGrid columns="7">
 							<p:menubar activeIndex="#{param.i}">
 								<p:menuitem value="Home" outcome="home">
 									<f:param name="i" value="0" />
 								</p:menuitem>
-								<p:menuitem value="Cadastrar Aluno/Professor"
-									outcome="menu-aluno-professor">
+								<p:menuitem value="Aluno"
+									outcome="aluno">
 									<f:param name="i" value="1" />
 								</p:menuitem>
-								<p:menuitem value="Disciplina" outcome="disciplina">
+								<p:menuitem value="Professor"
+									outcome="professor">
 									<f:param name="i" value="2" />
 								</p:menuitem>
-								<p:menuitem value="Período" outcome="periodo">
+								<p:menuitem value="Disciplina" outcome="disciplina">
 									<f:param name="i" value="3" />
 								</p:menuitem>
-								<p:menuitem value="Instituição" outcome="instituicao">
+								<p:menuitem value="Período" outcome="periodo">
 									<f:param name="i" value="4" />
 								</p:menuitem>
-								<p:menuitem value="Curso" outcome="curso">
+								<p:menuitem value="Instituição" outcome="instituicao">
 									<f:param name="i" value="5" />
 								</p:menuitem>
-								<p:menuitem value="Semestre" outcome="semestre">
+								<p:menuitem value="Curso" outcome="curso">
 									<f:param name="i" value="6" />
 								</p:menuitem>
-								<p:menuitem value="Matriz" outcome="matriz-curricular">
+								<p:menuitem value="Semestre" outcome="semestre">
 									<f:param name="i" value="7" />
+								</p:menuitem>
+								<p:menuitem value="Matriz" outcome="matriz-curricular">
+									<f:param name="i" value="8" />
 								</p:menuitem>
 							</p:menubar>
 						</h:panelGrid>
 
-					</h:form>
-				</ui:insert>
-			</div>
-		</aside>
-	</center>
+					</center>
+					<hr />
+				</h:form>
+			</ui:insert>
+		</div>
+	</aside>
 
-	<main>
-		<br />
-		<ui:insert name="main">
+	<main class="o-main"> <br />
+	<ui:insert name="main">
+		<h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+			Donec non blandit ipsum. Vestibulum neque diam, congue vel turpis
+			eget, vehicula rhoncus magna. Lorem ipsum dolor sit amet, consectetur
+			adipiscing elit. Praesent rhoncus posuere purus. Donec auctor, est et
+			sodales vulputate, sapien tortor congue erat, nec finibus mauris
+			ligula vel nulla. In bibendum arcu id placerat ullamcorper. Duis sit
+			amet risus et mauris posuere aliquet at quis risus. Curabitur mattis
+			nulla in blandit dignissim.</h3>
+		<h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+			Donec non blandit ipsum. Vestibulum neque diam, congue vel turpis
+			eget, vehicula rhoncus magna. Lorem ipsum dolor sit amet, consectetur
+			adipiscing elit. Praesent rhoncus posuere purus. Donec auctor, est et
+			sodales vulputate, sapien tortor congue erat, nec finibus mauris
+			ligula vel nulla. In bibendum arcu id placerat ullamcorper. Duis sit
+			amet risus et mauris posuere aliquet at quis risus. Curabitur mattis
+			nulla in blandit dignissim.</h3>
+		<h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+			Donec non blandit ipsum. Vestibulum neque diam, congue vel turpis
+			eget, vehicula rhoncus magna. Lorem ipsum dolor sit amet, consectetur
+			adipiscing elit. Praesent rhoncus posuere purus. Donec auctor, est et
+			sodales vulputate, sapien tortor congue erat, nec finibus mauris
+			ligula vel nulla. In bibendum arcu id placerat ullamcorper. Duis sit
+			amet risus et mauris posuere aliquet at quis risus. Curabitur mattis
+			nulla in blandit dignissim.</h3>
+	</ui:insert> </main>
 
-			<center>
-				<h2>Etapa 01</h2>
+	<footer class="o-footer">
+		<hr />
+		<div class="box footer" style="text-align: center;">
+			<h:outputText value="2019 - HVAS - All rights reserved." />
+		</div>
 
-				<h3>- Fazer o Diagrama de Classe: Unidade Organizacional
-					"Faculdade", Curso, Matriz Curricular (Periodo Letivo "Semestre" e
-					Disciplinas);</h3>
+	</footer>
 
-				<h3>- Implementar o CRUD do Diagrama de classe Proposto.</h3>
-
-				<h2>Etapa 02</h2>
-
-				<h3>- Continuação do Diagrama de Classe: Aluno, Professor,
-					Matricula, Turma, Nota, Frequência;</h3>
-
-				<h3>- Implementar o CRUD do Diagrama de classe Proposto.</h3>
-
-			</center>
-		</ui:insert>
-	</main>
-	<center>
-		<footer>
-			<hr />
-			<br />
-			<div>
-				<h:outputText value="2019 - HVAS - Todos os direitos reservados." />
-			</div>
-
-		</footer>
-	</center>
 
 </h:body>
+
 </html>
