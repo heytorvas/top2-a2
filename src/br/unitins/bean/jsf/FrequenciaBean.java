@@ -39,7 +39,7 @@ public class FrequenciaBean implements Serializable {
     }
 
     private void findAll() {
-        frequencias = frequenciaEJB.findAll();
+        setFrequencias(frequenciaEJB.findAll());
     }
 
     public void update() {
@@ -88,4 +88,12 @@ public class FrequenciaBean implements Serializable {
     public void setIdMatricula(Integer idMatricula) {
         this.idMatricula = idMatricula;
     }
+
+	public List<Frequencia> getFrequencias() {
+		return frequencias;
+	}
+
+	public void setFrequencias(List<Frequencia> frequencias) {
+		this.frequencias = frequencias;
+	}
 }

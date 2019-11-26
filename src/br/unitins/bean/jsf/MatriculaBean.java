@@ -40,7 +40,7 @@ public class MatriculaBean implements Serializable {
     }
 
     private void findAll() {
-        matriculas = matriculaEJB.findAll();
+        setMatriculas(matriculaEJB.findAll());
     }
 
     public void update() {
@@ -97,4 +97,12 @@ public class MatriculaBean implements Serializable {
     public void setIdDisciplinaOF(Integer idDisciplinaOF) {
         this.idDisciplinaOF = idDisciplinaOF;
     }
+
+	public List<Matricula> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
+	}
 }

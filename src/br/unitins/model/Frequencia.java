@@ -2,6 +2,7 @@ package br.unitins.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,13 +15,13 @@ public class Frequencia implements Serializable {
     private Integer id;
 
     @Column
-    private Date date;
+    private LocalDate date;
 
     @Column
-    private Date horaInicio;
+    private LocalDate horaInicio;
 
     @Column
-    private Date horaFim;
+    private LocalDate horaFim;
 
     @ManyToOne
     private Matricula matricula;
@@ -38,27 +39,27 @@ public class Frequencia implements Serializable {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Date getHoraInicio() {
+    public LocalDate getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(Date horaInicio) {
+    public void setHoraInicio(LocalDate horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public Date getHoraFim() {
+    public LocalDate getHoraFim() {
         return horaFim;
     }
 
-    public void setHoraFim(Date horaFim) {
+    public void setHoraFim(LocalDate horaFim) {
         this.horaFim = horaFim;
     }
 

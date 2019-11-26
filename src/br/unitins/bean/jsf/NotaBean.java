@@ -39,7 +39,7 @@ public class NotaBean implements Serializable {
     }
 
     private void findAll() {
-        notas = notaEJB.findAll();
+        setNotas(notaEJB.findAll());
     }
 
     public void update() {
@@ -88,4 +88,12 @@ public class NotaBean implements Serializable {
     public void setIdMatricula(Integer idMatricula) {
         this.idMatricula = idMatricula;
     }
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
 }

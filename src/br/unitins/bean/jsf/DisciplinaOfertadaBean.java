@@ -41,7 +41,7 @@ public class DisciplinaOfertadaBean implements Serializable {
     }
 
     private void findAll() {
-        disciplinaOfertadas = disciplinaOfertadaEJB.findAll();
+        setDisciplinaOfertadas(disciplinaOfertadaEJB.findAll());
     }
 
     public void update() {
@@ -106,4 +106,12 @@ public class DisciplinaOfertadaBean implements Serializable {
     public void setIdProfessor(Integer idProfessor) {
         this.idProfessor = idProfessor;
     }
+
+	public List<DisciplinaOfertada> getDisciplinaOfertadas() {
+		return disciplinaOfertadas;
+	}
+
+	public void setDisciplinaOfertadas(List<DisciplinaOfertada> disciplinaOfertadas) {
+		this.disciplinaOfertadas = disciplinaOfertadas;
+	}
 }

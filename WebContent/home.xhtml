@@ -26,7 +26,7 @@
 				<h:form>
 					<hr />
 					<center>
-						<h:panelGrid columns="7">
+						<h:panelGrid columns="10">
 							<p:menubar activeIndex="#{param.i}">
 								<p:menuitem value="Home" outcome="home">
 									<f:param name="i" value="0" />
@@ -56,6 +56,15 @@
 								</p:menuitem>
 								<p:menuitem value="Matriz" outcome="matriz-curricular">
 									<f:param name="i" value="8" />
+								</p:menuitem>
+								<p:menuitem value="Disciplina Ofertada" outcome="disciplinaofertada">
+									<f:param name="i" value="9" />
+								</p:menuitem>
+								<p:menuitem value="Frequencia" outcome="frequencia">
+									<f:param name="i" value="10" />
+								</p:menuitem>
+								<p:menuitem value="Nota" outcome="nota">
+									<f:param name="i" value="11" />
 								</p:menuitem>
 							</p:menubar>
 						</h:panelGrid>
