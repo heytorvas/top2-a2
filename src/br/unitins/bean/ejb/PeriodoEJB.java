@@ -14,14 +14,11 @@ public class PeriodoEJB {
     @PersistenceContext
     private EntityManager em;
 
-    public void insert(Periodo periodo, List<Disciplina> disciplinas) {
-        preencheDisciplina(periodo, disciplinas);
+    public void insert(Periodo periodo) {
         em.persist(periodo);
     }
 
-
-    public void update(Periodo periodo, List<Disciplina> disciplinas) {
-        preencheDisciplina(periodo, disciplinas);
+    public void update(Periodo periodo) {
         em.merge(periodo);
     }
 

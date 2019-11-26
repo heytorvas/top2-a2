@@ -47,7 +47,8 @@ public class PeriodoBean implements Serializable {
 	}
 
 	public void insert() {
-		periodoEJB.insert(periodo, disciplinas);
+		periodo.setDisciplinas(getDisciplinas());
+		periodoEJB.insert(periodo);
 		clean();
 		findAll();
 	}
@@ -57,7 +58,8 @@ public class PeriodoBean implements Serializable {
 	}
 
 	public void update() {
-		periodoEJB.update(periodo, disciplinas);
+		periodo.setDisciplinas(getDisciplinas());
+		periodoEJB.update(periodo);
 		clean();
 		findAll();
 	}
@@ -104,6 +106,11 @@ public class PeriodoBean implements Serializable {
 	}
 
 	public List<Disciplina> getDisciplinas() {
+		disciplinas.clear();
+		for (int i = 0; i < idDisciplina.size(); i++) {
+			disciplinas.add(disciplinaEJB.load(idDisciplina.get(i)));
+		}
+
 		return disciplinas;
 	}
 
